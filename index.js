@@ -21,21 +21,13 @@ const app = express();
 //  Connect to MongoDB before setting up middleware
 connectDB();
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://sports-frontend-3ewk.onrender.com',
-];
+//  Middleware (in correct order)
+console.log("CORS Origin:", process.env.FRONTEND_URL);
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-}));
+    origin: `https://sports-frontend-3ewk.onrender.com`, // frontend URL
+    credentials: true,
+  }));
 
 app.use(express.json()); // Parse JSON
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded data
