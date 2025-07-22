@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "engines": {
+    "node": "18.x"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.14",
     "bcryptjs": "^3.0.2",
