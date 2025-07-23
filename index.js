@@ -13,7 +13,7 @@ const adminRoutes=require("./routes/adminRoutes");
 const newsRoutes=require("./routes/newsRoutes");
 const tournamentRoutes=require("./routes/tournamentRoutes");
 const userRoutes=require("./routes/userRoutes");
-const cookieParser = require("cookie-parser");
+
 
 
 
@@ -45,7 +45,7 @@ app.use(
   })
 );
 
-app.use(cookieParser());
+
 
 app.use(express.json()); // Parse JSON
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded data
