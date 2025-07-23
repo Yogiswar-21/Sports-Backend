@@ -13,6 +13,9 @@ const adminRoutes=require("./routes/adminRoutes");
 const newsRoutes=require("./routes/newsRoutes");
 const tournamentRoutes=require("./routes/tournamentRoutes");
 const userRoutes=require("./routes/userRoutes");
+const cookieParser = require("cookie-parser");
+
+
 
 dotenv.config(); // Load environment variables
 
@@ -24,10 +27,25 @@ connectDB();
 //  Middleware (in correct order)
 console.log("CORS Origin:", process.env.FRONTEND_URL);
 
-app.use(cors({
-    origin: `https://sports-frontend-3ewk.onrender.com`, // frontend URL
-    credentials: true,
-  }));
+const allowedOrigins = [
+  "http://localhost:5173", // for development
+  "https://sports-frontend-3ewk.onrender.com" // for deployed frontend
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Required to support cookies
+  })
+);
+
+app.use(cookieParser());
 
 app.use(express.json()); // Parse JSON
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded data
