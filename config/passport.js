@@ -7,7 +7,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: `https://sports-backend-wxdt.onrender.com/auth/google/callback`, // Use env variable for deployment
+      callbackURL: `${process.env.BACKEND_URL}/auth/google/callback`, // Use env variable for deployment
     },
     async (accessToken, refreshToken,profile, done) => {
       try {
