@@ -60,8 +60,8 @@ module.exports.login = async (req, res) => {
       // Secure Cookie Settings
       res.cookie("auth_token", token, {
         httpOnly: true,
-        secure: true,
-        sameSite: "None",
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
         maxAge: 3600000,
       });
   
